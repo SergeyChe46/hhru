@@ -1,0 +1,14 @@
+.nav__bar {
+  display: flex;
+  justify-content: space-around;
+  padding: 15px;
+  border-radius: 10px;
+
+  background-color: antiquewhite;
+}
+
+li:hover {
+  transform: scale(1.1);
+  color: goldenrod;
+  cursor: pointer;
+}
