@@ -1,6 +1,30 @@
-<nav>
-  <ul class="nav__bar">
-    <li>Главная</li>
-    <li>Регистрация</li>
-  </ul>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+   <div class="container">
+      <a class="navbar-brand"
+         routerLink="/"
+         routerLinkActive="active"
+         [routerLinkActiveOptions]="{exact: true}">Главная</a>
+      <div class="collapse navbar-collapse justify-content-end"
+           id="navbarNavAltMarkup">
+         <div *ngIf="!onLogin()"
+              class="navbar-nav me-2">
+            <a class="nav-item nav-link"
+               routerLink="register"
+               routerLinkActive="active">Регистрация</a>
+            <a class="nav-item nav-link"
+               routerLink="login"
+               routerLinkActive="active">Войти</a>
+         </div>
+         <div *ngIf="onLogin()"
+              class="navbar-nav me-2">
+            <a class="nav-item nav-link me-2"
+               routerLink="register"
+               routerLinkActive="active">Личный кабинет</a>
+            <a class="nav-item nav-link me-2"
+               routerLink="login"
+               (click)="onLogout()">Выход</a>
+         </div>
+      </div>
+   </div>
 </nav>
+<router-outlet></router-outlet>

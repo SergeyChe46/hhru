@@ -12,3 +12,11 @@ li:hover {
   color: goldenrod;
   cursor: pointer;
 }
+
+ul{
+  list-style-type: none;
+}
+
+li{
+  font-size: x-large;
+}

@@ -1,0 +1,28 @@
+<div class="container pt-5">
+    <div class="row justify-content-md-center pt-5 shadow shadow-lg">
+        <form [formGroup]="loginForm"
+              class="col-md-6">
+
+            <div class="form-outline mb-4">
+                <input formControlName="username"
+                       type="text"
+                       class="form-control border-primary bg-warning p-2 text-dark bg-opacity-25" />
+                <label class="form-label">Имя пользователя</label>
+            </div>
+
+            <div class="form-outline mb-4">
+                <input formControlName="password"
+                       type="password"
+                       class="form-control border-primary bg-warning p-2 text-dark bg-opacity-25" />
+                <label class="form-label">Пароль</label>
+            </div>
+            <div class="row justify-content-md-center">
+                <button type="button"
+                        class="btn btn-primary btn-block mb-4"
+                        (click)="onLogin()">Войти</button>
+            </div>
+
+        </form>
+    </div>
+
+</div>

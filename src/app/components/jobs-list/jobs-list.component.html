@@ -1,0 +1,28 @@
+<div>
+    <div *ngFor="let job of jobsList">
+        <div class="card text-end mt-1">
+            <div class="card-header d-flex justify-content-center">
+                {{job.title}}
+            </div>
+            <div class="card-body d-flex justify-content-between">
+                <div>
+                    {{job.title}}
+                </div>
+                <div>
+                    <div *ngFor="let country of job.address.countries">
+                        <button class="badge text-bg-warning m-1">{{country}}</button>
+                    </div>
+                    <div *ngFor="let city of job.address.cities">
+                        <button class="badge text-bg-success m-1">{{city}}</button>
+                    </div>
+                    <div>
+                        <span *ngFor="let vacancy of job.vacancies">
+                            <a href="#"
+                               class="badge text-bg-primary m-1">{{vacancy}}</a>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,39 @@
+{
+  "jobs": [
+    {
+      "id": 1,
+      "title": "Job place 1",
+      "industry": "food",
+      "address": { "countries": ["Russia"], "cities": ["Kursk"] },
+      "vacancies": ["worker", "developer", "counter"]
+    },
+    {
+      "id": 2,
+      "title": "Job place 2",
+      "industry": "tech",
+      "address": { "countries": ["Russia"], "cities": ["Moscow"] },
+      "vacancies": ["CTO", "developer", "counter"]
+    },
+    {
+      "id": 3,
+      "title": "Job place 3",
+      "industry": "chemistry",
+      "address": { "countries": ["Russia"], "cities": ["Kursk"] },
+      "vacancies": ["worker"]
+    },
+    {
+      "id": 4,
+      "title": "Job place 4",
+      "industry": "building",
+      "address": { "countries": ["Russia"], "cities": ["Kursk"] },
+      "vacancies": ["builder"]
+    },
+    {
+      "id": 5,
+      "title": "Job place 5",
+      "industry": "food",
+      "address": { "countries": ["Russia"], "cities": ["Kursk"] },
+      "vacancies": ["cook", "cook"]
+    }
+  ]
+}
