@@ -14,6 +14,7 @@ export class UserServiceService {
   ) {}
 
   private url: string = 'https://dummyjson.com/auth/login';
+  private getUserUrl: string = 'https://dummyjson.com/users';
   private token: string = 'token';
   private userInfo: string = 'userInfo';
 
@@ -33,6 +34,10 @@ export class UserServiceService {
         console.log(err.error);
       }
     );
+  }
+
+  getUserById(id: number) {
+    return this.httpClient.get(this.getUserUrl + `/${id}`);
   }
 
   getUserInfo() {

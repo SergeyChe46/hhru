@@ -1,4 +1,10 @@
 <div>
+    <span class="d-flex justify-content-center mt-2 mb-2">
+        <button class="btn btn-success"
+                (click)="getAll()">Все вакансии</button>
+        <button class="btn btn-success"
+                (click)="getFiltered()">Мои вакансии</button>
+    </span>
     <div *ngFor="let job of jobsList">
         <div class="card text-end mt-1">
             <div class="card-header d-flex justify-content-center">

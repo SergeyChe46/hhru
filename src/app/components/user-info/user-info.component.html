@@ -1,1 +1,41 @@
-<p>user-info works!</p>
+<form class="row g-3"
+      *ngIf="userForm"
+      [formGroup]="userForm">
+    <div class="col-md-6">
+        <label class="form-label">Имя</label>
+        <input class="form-control border border-primary"
+               type="text"
+               formControlName="firstName">
+    </div>
+    <div class="col md-6">
+        <label class="form-label">Фамилия</label>
+        <input class="form-control border border-primary"
+               type="text"
+               formControlName="lastName">
+    </div>
+    <div class="col-6">
+        <label class="form-label">Электронная почта</label>
+        <input class="form-control border border-primary"
+               type="text"
+               formControlName="email">
+    </div>
+    <div class="col-6">
+        <label class="form-label">Gender</label>
+        <input class="form-control border border-primary"
+               type="text"
+               formControlName="gender">
+    </div>
+    <div class="col-6">
+        <label class="form-label">Телефон</label>
+        <input class="form-control border border-primary"
+               type="text"
+               formControlName="phone">
+    </div>
+    <div class="col-6">
+        <label class="form-label">Интересующая вакансия</label>
+        <input class="form-control border border-primary"
+               type="text"
+               formControlName="vacancy">
+    </div>
+    <button (click)="onSubmit()">Apply</button>
+</form>

@@ -20,17 +20,19 @@ export class JobsListComponent implements OnInit {
     this.getAll();
   }
 
+  getFiltered() {
+    let userInfo: any = this.userService.getUserInfo();
+    let userVacancy = userInfo['interestingJob'];
+    this.jobsList = userVacancy
+      ? this.jobsList.filter((job) =>
+          job.vacancies.includes(userInfo['interestingJob'])
+        )
+      : this.jobsList;
+  }
+
   getAll() {
     return this.jobService.getAll().subscribe((data: any) => {
-      let userInfo: any = this.userService.getUserInfo();
-      let userVacancy = userInfo['interestingJob'];
-
       this.jobsList = data['jobs'];
-      this.jobsList = userVacancy
-        ? this.jobsList.filter((job) =>
-            job.vacancies.includes(userInfo['interestingJob'])
-          )
-        : this.jobsList;
     });
   }
 }
