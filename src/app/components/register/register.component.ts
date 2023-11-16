@@ -20,6 +20,7 @@ export class RegisterComponent {
     private userService: UserServiceService
   ) {}
   registerForm: FormGroup = this.formBuilder.group({
+    // fakeApi предоставляет пользователей без ролей. В качестве роли будет использован пол: 'male' - соискатель, 'female' - HR.
     isJobSeeker: [false, Validators.required],
     firstName: ['', Validators.required],
     lastName: ['', Validators.required],
