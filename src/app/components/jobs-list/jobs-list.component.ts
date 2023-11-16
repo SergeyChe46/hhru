@@ -19,7 +19,9 @@ export class JobsListComponent implements OnInit {
   ngOnInit(): void {
     this.getAll();
   }
-
+  /**
+   * Фильтрует вакансии на основе указанной в userInfo вакансии
+   */
   getFiltered() {
     let userInfo: any = this.userService.getUserInfo();
     let userVacancy = userInfo['interestingJob'];
@@ -29,7 +31,10 @@ export class JobsListComponent implements OnInit {
         )
       : this.jobsList;
   }
-
+  /**
+   * Возвращает все вакансии
+   * @returns Все вакансии
+   */
   getAll() {
     return this.jobService.getAll().subscribe((data: any) => {
       this.jobsList = data['jobs'];

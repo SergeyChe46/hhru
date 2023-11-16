@@ -17,7 +17,12 @@ export class UserServiceService {
   private getUserUrl: string = 'https://dummyjson.com/users';
   private token: string = 'token';
   private userInfo: string = 'userInfo';
-
+  /**
+   * Авторизует пользователя
+   * @param username
+   * @param password
+   * @returns
+   */
   authUser(username: string, password: string) {
     let credentials = {
       username: username,
@@ -41,10 +46,10 @@ export class UserServiceService {
   }
 
   getUserInfo() {
-    let userInfo = JSON.parse(localStorage.getItem(this.userInfo)!);
+    let userInfo: string | null = JSON.parse(localStorage.getItem('userInfo')!);
     return userInfo;
   }
-
+  
   isUserAuthenticated() {
     let token = localStorage.getItem(this.token);
     if (token && !this.jwtService.isTokenExpired(token)) {

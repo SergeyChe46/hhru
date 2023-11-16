@@ -41,10 +41,8 @@ export class UserInfoComponent implements OnInit {
   onSubmit() {
     let u = JSON.parse(localStorage.getItem('userInfo')!);
     if (u) {
-      u['interestingJob'] = this.userForm.controls['vacancy'];
-      console.log(u);
-
-      localStorage.setItem('userInfo', u);
+      u['interestingJob'] = this.userForm.controls['vacancy'].value;
+      localStorage.setItem('userInfo', JSON.stringify(u));
     }
   }
 }
