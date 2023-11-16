@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 import {
   FormBuilder,
@@ -5,8 +6,9 @@ import {
   FormGroup,
   Validators,
 } from '@angular/forms';
+import { Router } from '@angular/router';
 import { JwtHelperService } from '@auth0/angular-jwt';
-import { UserServiceService } from 'src/app/services/user-service.service';
+import { AlertifyService } from 'src/app/services/alertify.service';
 
 @Component({
   selector: 'app-login',
@@ -14,10 +16,14 @@ import { UserServiceService } from 'src/app/services/user-service.service';
   styleUrls: ['./login.component.css'],
 })
 export class LoginComponent {
+  private url: string = 'https://dummyjson.com/auth/login';
+
   constructor(
     private formBuilder: FormBuilder,
-    private userService: UserServiceService,
-    private jwtHelper: JwtHelperService
+    private jwtHelper: JwtHelperService,
+    private router: Router,
+    private httpClient: HttpClient,
+    private alertify: AlertifyService
   ) {}
 
   loginForm: FormGroup = this.formBuilder.group({
@@ -32,7 +38,27 @@ export class LoginComponent {
     return this.loginForm.get('password') as FormControl;
   }
 
+  /**
+   * Авторизует пользователя
+   * @param username
+   * @param password
+   * @returns
+   */
   onLogin() {
-    return this.userService.authUser(this.username.value, this.password.value);
+    let credentials = {
+      username: this.username.value,
+      password: this.password.value,
+    };
+    return this.httpClient.post(this.url, credentials).subscribe(
+      (res: any) => {
+        localStorage.setItem('token', res.token);
+        res['interestingJob'] = 'worker';
+        localStorage.setItem('userInfo', JSON.stringify(res));
+        this.router.navigate(['/']);
+      },
+      (err) => {
+        this.alertify.error(err.error.message);
+      }
+    );
   }
 }

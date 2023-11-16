@@ -13,33 +13,9 @@ export class UserServiceService {
     private router: Router
   ) {}
 
-  private url: string = 'https://dummyjson.com/auth/login';
   private getUserUrl: string = 'https://dummyjson.com/users';
   private token: string = 'token';
   private userInfo: string = 'userInfo';
-  /**
-   * Авторизует пользователя
-   * @param username
-   * @param password
-   * @returns
-   */
-  authUser(username: string, password: string) {
-    let credentials = {
-      username: username,
-      password: password,
-    };
-    return this.httpClient.post(this.url, credentials).subscribe(
-      (res: any) => {
-        localStorage.setItem(this.token, res.token);
-        res['interestingJob'] = 'worker';
-        localStorage.setItem(this.userInfo, JSON.stringify(res));
-        this.router.navigate(['/']);
-      },
-      (err) => {
-        console.log(err.error);
-      }
-    );
-  }
 
   getUserById(id: number) {
     return this.httpClient.get(this.getUserUrl + `/${id}`);
@@ -49,7 +25,7 @@ export class UserServiceService {
     let userInfo: string | null = JSON.parse(localStorage.getItem('userInfo')!);
     return userInfo;
   }
-  
+
   isUserAuthenticated() {
     let token = localStorage.getItem(this.token);
     if (token && !this.jwtService.isTokenExpired(token)) {

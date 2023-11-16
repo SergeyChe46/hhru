@@ -11,6 +11,7 @@ import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
 import { UserInfoComponent } from './components/user-info/user-info.component';
 import { authGuard } from './services/guards/auth.guard';
+import { ApplicantsListComponent } from './components/applicants-list/applicants-list.component';
 
 @NgModule({
   declarations: [
@@ -19,6 +20,7 @@ import { authGuard } from './services/guards/auth.guard';
     JobsListComponent,
     LoginComponent,
     UserInfoComponent,
+    ApplicantsListComponent,
   ],
   imports: [
     BrowserModule,
