@@ -51,7 +51,7 @@
             ],
             "scripts": [
               "./node_modules/alertifyjs/build/alertify.min.js",
-              "./node_modules/bootstrap/dist/js/bootstrap.min.js"
+              "./node_modules/bootstrap/dist/js/bootstrap.bundle.js"
             ]
           },
           "configurations": {
