@@ -13,6 +13,7 @@ import { UserInfoComponent } from './components/user-info/user-info.component';
 import { authGuard } from './services/guards/auth.guard';
 import { ApplicantsListComponent } from './components/applicants-list/applicants-list.component';
 import { EnterTheViewportNotifierDirective } from './services/directives/enter-the-viewport-notifier.directive';
+import { ApplicantInfoComponent } from './components/applicant-info/applicant-info.component';
 
 @NgModule({
   declarations: [
@@ -23,6 +24,7 @@ import { EnterTheViewportNotifierDirective } from './services/directives/enter-t
     UserInfoComponent,
     ApplicantsListComponent,
     EnterTheViewportNotifierDirective,
+    ApplicantInfoComponent,
   ],
   imports: [
     BrowserModule,

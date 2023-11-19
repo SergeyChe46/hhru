@@ -1,5 +1,5 @@
 <div class="row">
-    <div class="col-sm-4"
+    <div class="col-sm-3"
          *ngFor="let user of users">
         <div class="card"
              style="width: 18rem;">
@@ -7,12 +7,12 @@
                  src={{user.image}}
                  alt="Card image cap">
             <div class="card-body">
-                <h5 class="card-title">{{ getUserName(user.firstName, user.lastName) }}</h5>
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
-                    card's content.</p>
+                <h4 class="card-title">{{ getUserName(user.firstName, user.lastName) }}</h4>
+                <h5 class="card-text">{{$any(user)['address']['address']}}</h5>
+                <h5 class="card-text">{{$any(user)['address']['city']}}</h5>
                 <div class="d-grid gap-2">
                     <button href="#"
-                            class="btn btn-primary">Go somewhere</button>
+                            class="btn btn-primary">Подробнее</button>
                 </div>
             </div>
         </div>
