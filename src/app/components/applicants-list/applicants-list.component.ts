@@ -1,4 +1,3 @@
-import { HttpClient } from '@angular/common/http';
 import { Component, ViewChild } from '@angular/core';
 import { StoredUser } from 'src/app/models/stored-user.interface';
 import { AlertifyService } from 'src/app/services/alertify.service';
@@ -12,7 +11,6 @@ import { ApplicantInfoComponent } from '../applicant-info/applicant-info.compone
 })
 export class ApplicantsListComponent {
   constructor(
-    private httpClient: HttpClient,
     private applicantsService: ApplicantsService,
     private alertify: AlertifyService
   ) {}
