@@ -7,17 +7,22 @@
                  src={{user.image}}
                  alt="Card image cap">
             <div class="card-body">
-                <h4 class="card-title">{{ getUserName(user.firstName, user.lastName) }}</h4>
-                <h5 class="card-text">{{$any(user)['address']['address']}}</h5>
-                <h5 class="card-text">{{$any(user)['address']['city']}}</h5>
+                <h4 class="card-title">{{getUserName(user.firstName, user.lastName)}}</h4>
+                <h5 class="card-text">{{truncateAddress($any(user)['address']['address'], 20)}}</h5>
+                <h5 class="card-text">{{truncateAddress($any(user)['address']['city'], 20)}}</h5>
                 <div class="d-grid gap-2">
-                    <button href="#"
+                    <button (click)="showUserInfo(user)"
+                            data-bs-toggle="modal"
+                            data-bs-target="#exampleModal"
                             class="btn btn-primary">Подробнее</button>
                 </div>
             </div>
         </div>
     </div>
 </div>
+<!-- Модальное окно с информацией о соискателе -->
+<app-applicant-info></app-applicant-info>
 <!-- div издаёт событие, о том, что надо подгружать пользователей -->
 <div appEnterTheViewportNotifier
      (visibilityChange)="onScroll($event)"></div>
+

@@ -1,7 +1,8 @@
 import { HttpClient } from '@angular/common/http';
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { StoredUser } from 'src/app/models/stored-user.interface';
 import { AlertifyService } from 'src/app/services/alertify.service';
+import { ApplicantInfoComponent } from '../applicant-info/applicant-info.component';
 
 @Component({
   selector: 'app-applicants-list',
@@ -14,8 +15,10 @@ export class ApplicantsListComponent {
     private alertify: AlertifyService
   ) {}
 
-  users: StoredUser[] = [];
+  @ViewChild(ApplicantInfoComponent, { static: false })
+  modal!: ApplicantInfoComponent;
 
+  users: StoredUser[] = [];
   private skip: number = 0;
   private limit = 10;
   private URL: string = 'https://dummyjson.com/users';
@@ -39,6 +42,25 @@ export class ApplicantsListComponent {
       });
   }
   /**
+   * Обрезает адрес, если он больше 20 символов
+   * @param address Адрес соискателя
+   * @param addressLength Длина адреса
+   * @returns В шаблон форматированный адрес соискателя
+   */
+  truncateAddress(address: string, addressLength: number) {
+    if (address.length > addressLength) {
+      return address.slice(0, addressLength) + '...';
+    }
+    return address;
+  }
+  /**
+   * Отправляет информация о соискателе в модальное окно
+   * @param user информация о соискателе
+   */
+  showUserInfo(user: StoredUser) {
+    this.modal.current = user;
+  }
+  /**
    * Возвращает форматированное имя пользователя
    * @param firstName
    * @param lastName
@@ -53,8 +75,8 @@ export class ApplicantsListComponent {
    */
   onScroll(e: any) {
     if (e) {
-      this.skip += this.limit;
       this.getUsers();
+      this.skip += this.limit;
     }
   }
 }
