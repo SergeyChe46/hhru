@@ -26,7 +26,7 @@ export class ApplicantsListComponent {
     this.applicantsService.getUsers(limit, skip).subscribe({
       next: (res: any) => {
         this.alertify.warning('Загружается');
-        res['users'].forEach((element: any) => {
+        res['users'].forEach((element: StoredUser) => {
           this.users.push(element);
         });
       },
