@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component, ViewChild } from '@angular/core';
 import { StoredUser } from 'src/app/models/stored-user.interface';
 import { AlertifyService } from 'src/app/services/alertify.service';
+import { ApplicantsService } from 'src/app/services/applicants.service';
 import { ApplicantInfoComponent } from '../applicant-info/applicant-info.component';
 
 @Component({
@@ -12,6 +13,7 @@ import { ApplicantInfoComponent } from '../applicant-info/applicant-info.compone
 export class ApplicantsListComponent {
   constructor(
     private httpClient: HttpClient,
+    private applicantsService: ApplicantsService,
     private alertify: AlertifyService
   ) {}
 
@@ -21,25 +23,22 @@ export class ApplicantsListComponent {
   users: StoredUser[] = [];
   private skip: number = 0;
   private limit = 10;
-  private URL: string = 'https://dummyjson.com/users';
 
-  getUsers() {
-    return this.httpClient
-      .get<StoredUser>(this.URL + `?limit=${this.limit}&skip=${this.skip}`)
-      .subscribe({
-        next: (res: any) => {
-          this.alertify.warning('Загружается');
-          res['users'].forEach((element: any) => {
-            this.users.push(element);
-          });
-        },
-        error: (error) => {
-          this.alertify.error('Ошибка ' + error);
-        },
-        complete: () => {
-          this.alertify.success('Загружено');
-        },
-      });
+  getAll(limit: number, skip: number) {
+    this.applicantsService.getUsers(limit, skip).subscribe({
+      next: (res: any) => {
+        this.alertify.warning('Загружается');
+        res['users'].forEach((element: any) => {
+          this.users.push(element);
+        });
+      },
+      error: (error) => {
+        this.alertify.error('Ошибка ' + error);
+      },
+      complete: () => {
+        this.alertify.success('Загружено');
+      },
+    });
   }
   /**
    * Обрезает адрес, если он больше 20 символов
@@ -75,7 +74,7 @@ export class ApplicantsListComponent {
    */
   onScroll(e: any) {
     if (e) {
-      this.getUsers();
+      this.getAll(this.limit, this.skip);
       this.skip += this.limit;
     }
   }
