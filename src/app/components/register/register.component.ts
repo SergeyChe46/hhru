@@ -5,8 +5,6 @@ import {
   FormGroup,
   Validators,
 } from '@angular/forms';
-import { Router } from '@angular/router';
-import { UserServiceService } from 'src/app/services/user-service.service';
 
 @Component({
   selector: 'app-register',
@@ -14,11 +12,8 @@ import { UserServiceService } from 'src/app/services/user-service.service';
   styleUrls: ['./register.component.css'],
 })
 export class RegisterComponent {
-  constructor(
-    private formBuilder: FormBuilder,
-    private router: Router,
-    private userService: UserServiceService
-  ) {}
+  constructor(private formBuilder: FormBuilder) {}
+
   registerForm: FormGroup = this.formBuilder.group({
     // fakeApi предоставляет пользователей без ролей. В качестве роли будет использован пол: 'male' - соискатель, 'female' - HR.
     isJobSeeker: [false, Validators.required],
@@ -28,7 +23,9 @@ export class RegisterComponent {
     password: [''],
     confirmPassword: [''],
   });
-
+  /**
+   * Возвращает true если пользователь соискатель. Иначе false.
+   */
   get isJobSeeker() {
     return this.registerForm.get('isJobSeeker') as FormControl;
   }

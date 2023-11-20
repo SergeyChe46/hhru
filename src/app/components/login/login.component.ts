@@ -49,16 +49,16 @@ export class LoginComponent {
       username: this.username.value,
       password: this.password.value,
     };
-    return this.httpClient.post(this.url, credentials).subscribe(
-      (res: any) => {
+    return this.httpClient.post(this.url, credentials).subscribe({
+      next: (res: any) => {
         localStorage.setItem('token', res.token);
         res['interestingJob'] = 'worker';
         localStorage.setItem('userInfo', JSON.stringify(res));
         this.router.navigate(['/']);
       },
-      (err) => {
+      error: (err) => {
         this.alertify.error(err.error.message);
-      }
-    );
+      },
+    });
   }
 }

@@ -15,7 +15,9 @@ export class UserInfoComponent implements OnInit {
     private formBuilder: FormBuilder,
     private userService: UserServiceService
   ) {}
-
+  /**
+   * Представялет информацию о пользователе в виде формы.
+   */
   ngOnInit(): void {
     let userInfo: any = JSON.parse(localStorage.getItem('userInfo')!);
 
@@ -37,7 +39,9 @@ export class UserInfoComponent implements OnInit {
       });
     });
   }
-
+  /**
+   * Сохраняет данные, если они были изменены.
+   */
   onSubmit() {
     let u = JSON.parse(localStorage.getItem('userInfo')!);
     if (u) {
