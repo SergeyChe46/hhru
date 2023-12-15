@@ -14,6 +14,7 @@ import { authGuard } from './services/guards/auth.guard';
 import { ApplicantsListComponent } from './components/applicants-list/applicants-list.component';
 import { EnterTheViewportNotifierDirective } from './services/directives/enter-the-viewport-notifier.directive';
 import { ApplicantInfoComponent } from './components/applicant-info/applicant-info.component';
+import { HighliteDirective } from './services/directives/highlite.directive';
 
 @NgModule({
   declarations: [
@@ -25,6 +26,7 @@ import { ApplicantInfoComponent } from './components/applicant-info/applicant-in
     ApplicantsListComponent,
     EnterTheViewportNotifierDirective,
     ApplicantInfoComponent,
+    HighliteDirective,
   ],
   imports: [
     BrowserModule,

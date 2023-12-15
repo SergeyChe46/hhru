@@ -1,7 +1,8 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { JwtHelperService } from '@auth0/angular-jwt';
+import { RegisterUser } from '../models/registerUser.interface';
 
 @Injectable({
   providedIn: 'root',
@@ -13,12 +14,18 @@ export class UserServiceService {
     private router: Router
   ) {}
 
-  private getUserUrl: string = 'https://dummyjson.com/users';
+  private BASE_URL: string = 'https://dummyjson.com/users';
   private token: string = 'token';
   private userInfo: string = 'userInfo';
 
+  register(userData: RegisterUser) {
+    return this.httpClient.post(this.BASE_URL + '/add', userData, {
+      headers: new HttpHeaders().set('Content-Type', 'application/json'),
+    });
+  }
+
   getUserById(id: number) {
-    return this.httpClient.get(this.getUserUrl + `/${id}`);
+    return this.httpClient.get(this.BASE_URL + `/${id}`);
   }
 
   getUserInfo() {

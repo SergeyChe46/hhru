@@ -1,19 +1,21 @@
-<form class="row g-3"
-      [formGroup]="registerForm">
+<div class="d-flex justify-content-center">
+
+    <form class="row g-3"
+          [formGroup]="registerForm" novalidate autocomplete="off">
     <fieldset class="pt-3 d-flex justify-content-center">
         <div class="user_role">
             <label class="form-check-label">
                 <input class="form-check-input"
-                       type="radio"
-                       formControlName="isJobSeeker"
-                       value="true" />
+                type="radio"
+                formControlName="isJobSeeker"
+                value="true" />
                 Ищу работу.
             </label>
             <label class="form-check-label">
                 <input class="form-check-input"
-                       type="radio"
-                       formControlName="isJobSeeker"
-                       value="false" />
+                type="radio"
+                formControlName="isJobSeeker"
+                value="false" />
                 Размещаю вакансии.
             </label>
         </div>
@@ -22,35 +24,47 @@
     <div class="col-md-6">
         <label class="form-label">Имя</label>
         <input class="form-control border border-primary"
-               type="text"
-               formControlName="firstName">
+        type="text"
+        formControlName="firstName">
     </div>
     <div class="col md-6">
         <label class="form-label">Фамилия</label>
         <input class="form-control border border-primary"
-               type="text"
-               formControlName="lastName">
+        type="text"
+        formControlName="lastName">
     </div>
     <div class="col-12">
         <label class="form-label">Электронная почта</label>
         <input class="form-control border border-primary"
-               type="text"
-               formControlName="email">
+        type="text"
+        formControlName="email">
+        <div *ngIf="email.touched && email.errors">
+            <i class="bi bi-exclamation-triangle text-danger">
+                Неверный адрес
+            </i>
+        </div>
+
     </div>
 
     <div class="col-md-6">
         <label class="form-label">Пароль</label>
         <input class="form-control border border-primary"
-               type="password"
-               formControlName="password">
+        type="password"
+        formControlName="password">
     </div>
     <div class="col-md-6">
         <label class="form-label">Повторите пароль</label>
         <input class="form-control border border-primary"
-               type="password"
-               formControlName="confirmPassword">
+        type="password"
+        formControlName="confirmPassword">
+        <div *ngIf="passwordConfirm.errors">
+            <i class="bi bi-exclamation-triangle text-danger">Пароль не совпадает</i>
+        </div>
     </div>
 
     <button class="btn"
-            [ngClass]="!registerForm.valid ? 'disabled btn-secondary': 'btn-success'">Создать</button>
+
+    (click)="onSubmit()"
+    [ngClass]="!registerForm.valid ? 'disabled btn-secondary': 'btn-success'">Создать</button>
 </form>
+</div>
